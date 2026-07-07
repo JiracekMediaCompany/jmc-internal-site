@@ -292,14 +292,9 @@ export function TopNav() {
           {/* Brand/Logo (left) */}
           <Typography
             variant="h6"
-            component={RouterLink}
-            to={user ? '/home' : '/login'}
             sx={{
-              textDecoration: 'none',
               color: 'primary.main',
               fontWeight: 700,
-              cursor: 'pointer',
-              '&:focus-visible': { outline: '2px solid', outlineOffset: 2 },
             }}
           >
             JMC
