@@ -22,6 +22,18 @@ export default function CompanyUsersPage() {
   // Define DataGrid columns
   const columns: GridColDef[] = [
     {
+      field: 'firstName',
+      headerName: 'First Name',
+      width: 150,
+      sortable: true,
+    },
+    {
+      field: 'lastName',
+      headerName: 'Last Name',
+      width: 150,
+      sortable: true,
+    },
+    {
       field: 'email',
       headerName: 'Email',
       width: 300,
@@ -33,6 +45,8 @@ export default function CompanyUsersPage() {
   // DataGrid requires each row to have a unique 'id' field
   const rows = MOCK_USERS.map((user, index) => ({
     id: index,
+    firstName: user.firstName,
+    lastName: user.lastName,
     email: user.email,
   }));
 
