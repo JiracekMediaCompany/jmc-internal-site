@@ -83,7 +83,7 @@ export function TopNav() {
   const renderDesktopNavLinks = () => {
     if (!user) return null;
     return (
-      <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 2, ml: 2 }}>
+      <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 2 }}>
         <Button
           color="inherit"
           component={RouterLink}
@@ -305,10 +305,13 @@ export function TopNav() {
             JMC
           </Typography>
 
-          {/* Desktop Navigation Links (center-left) */}
+          {/* Spacer to push nav to center */}
+          <Box sx={{ flexGrow: 1 }} />
+
+          {/* Desktop Navigation Links (centered) */}
           {renderDesktopNavLinks()}
 
-          {/* Spacer */}
+          {/* Spacer to push right section to right */}
           <Box sx={{ flexGrow: 1 }} />
 
           {/* Desktop Right Section (theme + user menu / sign in) */}
