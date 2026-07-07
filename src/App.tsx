@@ -8,6 +8,7 @@ import TopNav from './components/TopNav';
 import LoginPage from './pages/Login/Login';
 import HomePage from './pages/Home/Home';
 import SettingsPage from './pages/Settings/Settings';
+import CompanyUsersPage from './pages/CompanyUsers/CompanyUsers';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
               <Route element={<ProtectedRoute />}>
                 <Route path="/home" element={<HomePage />} />
                 <Route path="/settings" element={<SettingsPage />} />
+                <Route path="/company-users" element={<CompanyUsersPage />} />
               </Route>
               <Route path="*" element={<Navigate to="/login" replace />} />
             </Routes>

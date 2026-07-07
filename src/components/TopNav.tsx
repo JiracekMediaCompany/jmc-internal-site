@@ -97,6 +97,19 @@ export function TopNav() {
         >
           Home
         </Button>
+        <Button
+          color="inherit"
+          component={RouterLink}
+          to="/company-users"
+          aria-label="Navigate to Company Users"
+          sx={{
+            textTransform: 'none',
+            fontSize: '1rem',
+            '&:hover': { backgroundColor: 'rgba(255, 255, 255, 0.1)' },
+          }}
+        >
+          Company Users
+        </Button>
       </Box>
     );
   };
@@ -163,6 +176,15 @@ export function TopNav() {
                     to="/home"
                   >
                     <ListItemText primary="Home" />
+                  </ListItemButton>
+                </ListItem>
+                <ListItem disablePadding>
+                  <ListItemButton
+                    onClick={handleDrawerClose}
+                    component={RouterLink}
+                    to="/company-users"
+                  >
+                    <ListItemText primary="Company Users" />
                   </ListItemButton>
                 </ListItem>
                 <Divider sx={{ my: 1 }} />
