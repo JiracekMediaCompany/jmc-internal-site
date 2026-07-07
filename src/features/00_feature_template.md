@@ -37,3 +37,37 @@ A concise implementation plan (no code) to [brief description of the feature to 
 ---
 
 Follow these steps to implement [feature name and key technologies/libraries used].
+
+## Implementation Notes
+
+### Step 1 — [Section Title]
+
+[Add detailed notes, architecture decisions, and implementation details here as you complete each step.]
+
+### Step 2 — [Section Title]
+
+[Add detailed notes, architecture decisions, and implementation details here.]
+
+### Step 3 — [Section Title]
+
+[Add detailed notes, architecture decisions, and implementation details here.]
+
+### Step 4 — [Section Title]
+
+[Add detailed notes, architecture decisions, and implementation details here.]
+
+### Step 5 — [Section Title]
+
+[Add detailed notes, architecture decisions, and implementation details here.]
+
+### Step 6 — [Section Title]
+
+[Add detailed notes, architecture decisions, and implementation details here.]
+
+### Step 7 — [Section Title]
+
+[Add detailed notes, architecture decisions, and implementation details here.]
+
+### Step 8 — [Section Title]
+
+[Add detailed notes, architecture decisions, and implementation details here.]
