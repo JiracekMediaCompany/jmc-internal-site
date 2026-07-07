@@ -1,17 +1,14 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { ThemeProvider, createTheme, CssBaseline } from '@mui/material';
+import { ThemeModeProvider } from './context/ThemeContext';
 import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import LoginPage from './pages/Login/Login';
 import HomePage from './pages/Home/Home';
 
-const theme = createTheme();
-
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
+    <ThemeModeProvider>
       <AuthProvider>
         <BrowserRouter>
           <Routes>
@@ -23,7 +20,7 @@ function App() {
           </Routes>
         </BrowserRouter>
       </AuthProvider>
-    </ThemeProvider>
+    </ThemeModeProvider>
   );
 }
 

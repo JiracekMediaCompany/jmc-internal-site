@@ -3,6 +3,7 @@ import { Box, Paper, Typography, TextField, Button, Stack, Alert } from '@mui/ma
 import { useForm, Controller } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
+import { useThemeMode } from '../../context/ThemeContext';
 import { validateCredentials } from '../../services/mockAuthService';
 
 interface LoginFormValues {
@@ -14,6 +15,7 @@ const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
 export default function LoginPage() {
   const { login } = useAuth();
+  const { isDark } = useThemeMode();
   const navigate = useNavigate();
   const [loginError, setLoginError] = useState<string | null>(null);
   const {
@@ -46,18 +48,35 @@ export default function LoginPage() {
         justifyContent: 'center',
         alignItems: 'center',
         minHeight: '100vh',
-        bgcolor: 'grey.100',
+        bgcolor: 'background.default',
+        backgroundImage: isDark
+          ? 'radial-gradient(ellipse 70% 50% at 50% 0%, rgba(34, 211, 238, 0.12), transparent)'
+          : 'radial-gradient(ellipse 70% 50% at 50% 0%, rgba(8, 145, 178, 0.06), transparent)',
+        px: 2,
       }}
     >
       <Paper
-        elevation={3}
+        elevation={isDark ? 0 : 3}
         sx={{
           p: 4,
           width: '100%',
           maxWidth: 400,
+          borderRadius: 4,
         }}
       >
-        <Typography variant="h5" component="h1" gutterBottom sx={{ textAlign: 'center'}}>
+        <Typography
+          variant="h5"
+          component="h1"
+          gutterBottom
+          sx={{
+            textAlign: 'center',
+            background: isDark
+              ? 'linear-gradient(135deg, #22D3EE 0%, #A78BFA 100%)'
+              : 'linear-gradient(135deg, #0891B2 0%, #7C3AED 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+          }}
+        >
           Sign In
         </Typography>
         {loginError && (
