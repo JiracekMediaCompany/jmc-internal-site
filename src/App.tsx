@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Box } from '@mui/material';
 import { ThemeModeProvider } from './context/ThemeContext';
-import { AuthProvider } from './context/AuthContext';
+import { AuthProvider, useAuth } from './context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import TopNav from './components/TopNav';
 import LoginPage from './pages/Login/Login';
@@ -10,26 +10,37 @@ import HomePage from './pages/Home/Home';
 import SettingsPage from './pages/Settings/Settings';
 import CompanyUsersPage from './pages/CompanyUsers/CompanyUsers';
 
+/**
+ * Inner App component that has access to AuthContext
+ */
+function AppContent() {
+  const { user } = useAuth();
+
+  return (
+    <BrowserRouter>
+      {/* TopNav only shows for logged-in users */}
+      {user && <TopNav />}
+      {/* Reserve AppBar offset spacing only when TopNav is visible */}
+      <Box component="main" sx={{ pt: user ? 8 : 0 }}>
+        <Routes>
+          <Route path="/login" element={<LoginPage />} />
+          <Route element={<ProtectedRoute />}>
+            <Route path="/home" element={<HomePage />} />
+            <Route path="/settings" element={<SettingsPage />} />
+            <Route path="/company-users" element={<CompanyUsersPage />} />
+          </Route>
+          <Route path="*" element={<Navigate to="/login" replace />} />
+        </Routes>
+      </Box>
+    </BrowserRouter>
+  );
+}
+
 function App() {
   return (
     <ThemeModeProvider>
       <AuthProvider>
-        <BrowserRouter>
-          {/* TopNav persists across all routes */}
-          <TopNav />
-          {/* Reserve AppBar offset spacing so content doesn't sit under navigation */}
-          <Box component="main" sx={{ pt: 8 }}>
-            <Routes>
-              <Route path="/login" element={<LoginPage />} />
-              <Route element={<ProtectedRoute />}>
-                <Route path="/home" element={<HomePage />} />
-                <Route path="/settings" element={<SettingsPage />} />
-                <Route path="/company-users" element={<CompanyUsersPage />} />
-              </Route>
-              <Route path="*" element={<Navigate to="/login" replace />} />
-            </Routes>
-          </Box>
-        </BrowserRouter>
+        <AppContent />
       </AuthProvider>
     </ThemeModeProvider>
   );
