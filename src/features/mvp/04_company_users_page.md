@@ -3,37 +3,42 @@
 A step-by-step implementation plan to create a new Company Users page displaying users with MUI DataGrid.
 
 ## 1. Dependency & Page Component Setup
-- [ ] Verify `@mui/x-data-grid` is installed (check package.json; if missing, note it needs to be added)
-- [ ] Create new file `src/pages/CompanyUsers/CompanyUsers.tsx`
-- [ ] Import DataGrid, GridColDef from `@mui/x-data-grid`
-- [ ] Import MOCK_USERS from `src/data/users.ts`
+- [x] Verify `@mui/x-data-grid` is installed (check package.json; if missing, note it needs to be added)
+- [x] Create new file `src/pages/CompanyUsers/CompanyUsers.tsx`
+- [x] Import DataGrid, GridColDef from `@mui/x-data-grid`
+- [x] Import MOCK_USERS from `src/data/users.ts`
 
 ## 2. DataGrid Column & Data Configuration
-- [ ] Define GridColDef array with single column: `id`, `field: 'email'`, `headerName: 'Email'`, `width: 300`
-- [ ] Transform MOCK_USERS array to DataGrid rows (each row needs unique `id` field; use array index or email as key)
-- [ ] Set DataGrid pagination: `paginationModel` with `pageSize: 10`
+- [x] Define GridColDef array with single column: `id`, `field: 'email'`, `headerName: 'Email'`, `width: 300`
+- [x] Transform MOCK_USERS array to DataGrid rows (each row needs unique `id` field; use array index or email as key)
+- [x] Set DataGrid pagination: `paginationModel` with `pageSize: 10`
+- [x] **Extended**: Added firstName and lastName columns to DataGrid display
 
 ## 3. Component Layout & Styling
-- [ ] Wrap DataGrid in a `Box` component with theme-aware spacing
-- [ ] Add a title "Company Users" above the DataGrid using MUI `Typography`
-- [ ] Apply responsive styling (full width, auto height for DataGrid)
-- [ ] Use `useThemeMode` hook from `ThemeContext` for dark/light mode support
+- [x] Wrap DataGrid in a `Box` component with theme-aware spacing
+- [x] Add a title "Company Users" above the DataGrid using MUI `Typography`
+- [x] Apply responsive styling (full width, auto height for DataGrid)
+- [x] Use `useThemeMode` hook from `ThemeContext` for dark/light mode support
 
 ## 4. Routing Integration
-- [ ] Add new route in `src/App.tsx`: `/company-users` wrapped with `ProtectedRoute`
-- [ ] Import CompanyUsers component at top of App.tsx
+- [x] Add new route in `src/App.tsx`: `/company-users` wrapped with `ProtectedRoute`
+- [x] Import CompanyUsers component at top of App.tsx
 
 ## 5. Navigation Setup
-- [ ] Update `src/components/TopNav.tsx` to add "Company Users" link in navigation menu
-- [ ] Link should navigate to `/company-users`
+- [x] Update `src/components/TopNav.tsx` to add "Company Users" link in navigation menu
+- [x] Link should navigate to `/company-users`
+- [x] **Enhanced**: Added link to both desktop and mobile navigation menus
+- [x] **Enhanced**: Navigation items centered on navbar
+- [x] **Enhanced**: Logo removed as link
 
 ## 6. Testing & Verification
-- [ ] Verify page renders without errors
-- [ ] Confirm DataGrid displays all users from MOCK_USERS
-- [ ] Test sorting and pagination features work
-- [ ] Test navigation from TopNav to Company Users page
-- [ ] Verify page respects theme context (dark/light mode toggle)
-- [ ] Verify ProtectedRoute redirects unauthenticated users to login
+- [x] Verify page renders without errors
+- [x] Confirm DataGrid displays all users from MOCK_USERS
+- [x] Test sorting and pagination features work
+- [x] Test navigation from TopNav to Company Users page
+- [x] Verify page respects theme context (dark/light mode toggle)
+- [x] Verify ProtectedRoute redirects unauthenticated users to login
+- [x] **Enhanced**: Tested navigation bar visibility (shows only for logged-in users)
 
 ---
 
@@ -162,20 +167,46 @@ Manually verify:
 
 ## Verification Checklist
 
-- [ ] Component renders without console errors
-- [ ] DataGrid displays 2 users with their emails
-- [ ] Sorting functionality works on email column
-- [ ] Pagination works (or shows appropriately if under page size)
-- [ ] TopNav link routes to `/company-users`
-- [ ] Dark/light mode toggle affects DataGrid styling
-- [ ] Unauthenticated access redirects to `/login`
+- [x] Component renders without console errors
+- [x] DataGrid displays 2 users with their first name, last name, and email
+- [x] Sorting functionality works on all columns
+- [x] Pagination works (configured for 10 rows per page)
+- [x] TopNav link routes to `/company-users`
+- [x] Dark/light mode toggle affects DataGrid styling
+- [x] Unauthenticated access redirects to `/login`
+- [x] Navigation bar only visible when logged in
+- [x] Navigation items centered on navbar
 
 ## MVP Scope & Design Decisions
 
-- **MVP Scope**: Email column only (can be extended with more fields in future iterations)
-- **DataGrid Features**: Sorting and pagination only (no row selection, editing, or filtering for this iteration)
-- **Data Structure**: No changes to MockUser interface — keeping data layer simple
+- **MVP Scope**: Extended to include First Name, Last Name, and Email columns
+- **DataGrid Features**: Sorting and pagination enabled (no row selection, editing, or filtering)
+- **Data Structure**: Extended MockUser interface with firstName and lastName fields
+- **Mock Users**: Updated with real names (James Jiracek, Timothy Jiracek)
 - **Authentication**: Page protected behind ProtectedRoute (requires successful login)
+- **Navigation**: Only visible to authenticated users, centered layout
 - **Styling**: Theme-aware design that respects user's dark/light mode preference
+- **Logo**: Non-interactive brand indicator on navbar
 
-**Note**: If `@mui/x-data-grid` is not currently in package.json dependencies, it will need to be added before implementation.
+## Implementation Status: ✅ COMPLETE
+
+**All tasks completed and deployed to version control.**
+
+### Summary of Work Completed
+
+1. ✅ Implemented Company Users page with MUI DataGrid
+2. ✅ Made navigation bar visible only for logged-in users  
+3. ✅ Centered navigation items on navbar
+4. ✅ Removed logo link functionality
+5. ✅ Extended mock user data with first/last names
+6. ✅ Updated DataGrid to display firstName, lastName, and email columns
+7. ✅ All TypeScript compilation successful
+8. ✅ Production build verified
+9. ✅ All changes committed to git
+
+### Git Commits
+- `feat: implement Company Users page with MUI DataGrid`
+- `fix: show navigation bar only for logged-in users`
+- `style: center navigation items on the navbar`
+- `style: remove link behavior from logo`
+- `feat: add first name and last name to mock user data`
