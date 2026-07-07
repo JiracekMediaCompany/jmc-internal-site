@@ -34,15 +34,15 @@ export default function CompanyUsersPage() {
       sortable: true,
     },
     {
-      field: 'title',
-      headerName: 'Title',
-      width: 150,
-      sortable: true,
-    },
-    {
       field: 'email',
       headerName: 'Email',
       width: 250,
+      sortable: true,
+    },
+    {
+      field: 'title',
+      headerName: 'Title',
+      width: 150,
       sortable: true,
     },
     {
