@@ -79,6 +79,11 @@ export function TopNav() {
     navigate('/settings');
   };
 
+  const handleNavigateCompanyApps = () => {
+    handleDrawerClose();
+    navigate('/company-apps');
+  };
+
   // Desktop Navigation Links (signed-in only)
   const renderDesktopNavLinks = () => {
     if (!user) return null;
@@ -109,6 +114,19 @@ export function TopNav() {
           }}
         >
           Company Users
+        </Button>
+        <Button
+          color="inherit"
+          component={RouterLink}
+          to="/company-apps"
+          aria-label="Navigate to Company Apps"
+          sx={{
+            textTransform: 'none',
+            fontSize: '1rem',
+            '&:hover': { backgroundColor: 'rgba(255, 255, 255, 0.1)' },
+          }}
+        >
+          Company Apps
         </Button>
       </Box>
     );
@@ -185,6 +203,15 @@ export function TopNav() {
                     to="/company-users"
                   >
                     <ListItemText primary="Company Users" />
+                  </ListItemButton>
+                </ListItem>
+                <ListItem disablePadding>
+                  <ListItemButton
+                    onClick={handleNavigateCompanyApps}
+                    component={RouterLink}
+                    to="/company-apps"
+                  >
+                    <ListItemText primary="Company Apps" />
                   </ListItemButton>
                 </ListItem>
                 <Divider sx={{ my: 1 }} />
