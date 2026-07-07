@@ -3,6 +3,8 @@ export interface MockUser {
   password: string;
   firstName: string;
   lastName: string;
+  title: string;
+  isAdmin: boolean;
 }
 
 export const MOCK_USERS: MockUser[] = [
@@ -11,11 +13,15 @@ export const MOCK_USERS: MockUser[] = [
     password: 'Password1!',
     firstName: 'James',
     lastName: 'Jiracek',
+    title: 'Co-Founder',
+    isAdmin: true,
   },
   {
     email: 'timothyjiracek@jmc@gmail.com',
     password: 'Password1!',
     firstName: 'Timothy',
     lastName: 'Jiracek',
+    title: 'Co-Founder',
+    isAdmin: true,
   },
 ];

@@ -34,10 +34,23 @@ export default function CompanyUsersPage() {
       sortable: true,
     },
     {
+      field: 'title',
+      headerName: 'Title',
+      width: 150,
+      sortable: true,
+    },
+    {
       field: 'email',
       headerName: 'Email',
-      width: 300,
+      width: 250,
       sortable: true,
+    },
+    {
+      field: 'isAdmin',
+      headerName: 'Admin',
+      width: 100,
+      sortable: true,
+      renderCell: (params) => (params.value ? 'Yes' : 'No'),
     },
   ];
 
@@ -47,7 +60,9 @@ export default function CompanyUsersPage() {
     id: index,
     firstName: user.firstName,
     lastName: user.lastName,
+    title: user.title,
     email: user.email,
+    isAdmin: user.isAdmin,
   }));
 
   return (
