@@ -89,6 +89,11 @@ export function TopNav() {
     navigate('/company-teams');
   };
 
+  const handleNavigateCompanyResources = () => {
+    handleDrawerClose();
+    navigate('/company-resources');
+  };
+
   // Desktop Navigation Links (signed-in only)
   const renderDesktopNavLinks = () => {
     if (!user) return null;
@@ -145,6 +150,19 @@ export function TopNav() {
           }}
         >
           Company Teams
+        </Button>
+        <Button
+          color="inherit"
+          component={RouterLink}
+          to="/company-resources"
+          aria-label="Navigate to Company Resources"
+          sx={{
+            textTransform: 'none',
+            fontSize: '1rem',
+            '&:hover': { backgroundColor: 'rgba(255, 255, 255, 0.1)' },
+          }}
+        >
+          Company Resources
         </Button>
       </Box>
     );
@@ -239,6 +257,15 @@ export function TopNav() {
                     to="/company-teams"
                   >
                     <ListItemText primary="Company Teams" />
+                  </ListItemButton>
+                </ListItem>
+                <ListItem disablePadding>
+                  <ListItemButton
+                    onClick={handleNavigateCompanyResources}
+                    component={RouterLink}
+                    to="/company-resources"
+                  >
+                    <ListItemText primary="Company Resources" />
                   </ListItemButton>
                 </ListItem>
                 <Divider sx={{ my: 1 }} />
