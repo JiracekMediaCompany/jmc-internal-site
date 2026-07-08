@@ -29,7 +29,7 @@ export const mockApps: App[] = [
     createdBy: 'James Jiracek',
     modifiedBy: '',
     version: '1.0.0',
-    developmentTeam: 'Platform Team',
+    developmentTeam: 'James Jiracek',
   },
   {
     id: '2',
@@ -39,7 +39,7 @@ export const mockApps: App[] = [
     createdBy: 'James Jiracek',
     modifiedBy: '',
     version: '1.5.0',
-    developmentTeam: 'Mobile App Testing',
+    developmentTeam: 'James Jiracek',
   },
   {
     id: '3',
@@ -49,7 +49,7 @@ export const mockApps: App[] = [
     createdBy: 'James Jiracek',
     modifiedBy: '',
     version: '1.2.5',
-    developmentTeam: 'Data Science Team',
+    developmentTeam: 'Core Team',
   },
   {
     id: '4',
@@ -59,6 +59,6 @@ export const mockApps: App[] = [
     createdBy: 'Timothy Jiracek',
     modifiedBy: '',
     version: '0.8.0',
-    developmentTeam: 'Operations Team',
+    developmentTeam: 'Core Team',
   },
 ];

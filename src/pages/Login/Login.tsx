@@ -30,8 +30,8 @@ export default function LoginPage() {
     setLoginError(null);
     try {
       const result = await validateCredentials(data.email, data.password);
-      if (result.success) {
-        login({ email: data.email });
+      if (result.success && result.user) {
+        login(result.user);
         navigate('/home', { replace: true });
       } else {
         setLoginError(result.error || 'Login failed');

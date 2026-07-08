@@ -1,9 +1,9 @@
-import { MOCK_USERS } from '../data/users';
+import { MOCK_USERS, MockUser } from '../data/users';
 
 export async function validateCredentials(
   email: string,
   password: string
-): Promise<{ success: boolean; error?: string }> {
+): Promise<{ success: boolean; error?: string; user?: MockUser }> {
   // Simulate API call delay
   await new Promise((resolve) => setTimeout(resolve, 500));
 
@@ -12,7 +12,7 @@ export async function validateCredentials(
   );
 
   if (user) {
-    return { success: true };
+    return { success: true, user };
   }
 
   return {
