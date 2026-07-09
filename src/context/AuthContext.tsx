@@ -1,4 +1,5 @@
 import React, { createContext, useState, useContext, ReactNode, useEffect } from 'react';
+import { EmployeePosition } from '../data/positions';
 
 interface AuthUser {
   email: string;
@@ -6,6 +7,7 @@ interface AuthUser {
   lastName: string;
   title: string;
   isAdmin: boolean;
+  positions?: EmployeePosition[];
 }
 
 interface AuthContextType {

@@ -12,6 +12,7 @@ import CompanyUsersPage from './pages/CompanyUsers/CompanyUsers';
 import CompanyAppsPage from './pages/CompanyApps/CompanyApps';
 import CompanyTeamsPage from './pages/CompanyTeams/CompanyTeams';
 import CompanyResourcesPage from './pages/CompanyResources/CompanyResources';
+import EmployeeProfilePage from './pages/EmployeeProfile/EmployeeProfile';
 
 /**
  * Inner App component that has access to AuthContext
@@ -34,6 +35,7 @@ function AppContent() {
             <Route path="/company-apps" element={<CompanyAppsPage />} />
             <Route path="/company-teams" element={<CompanyTeamsPage />} />
             <Route path="/company-resources" element={<CompanyResourcesPage />} />
+            <Route path="/employee-profile" element={<EmployeeProfilePage />} />
           </Route>
           <Route path="*" element={<Navigate to="/login" replace />} />
         </Routes>

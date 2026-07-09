@@ -79,6 +79,12 @@ export function TopNav() {
     navigate('/settings');
   };
 
+  const handleNavigateEmployeeProfile = () => {
+    handleUserMenuClose();
+    handleDrawerClose();
+    navigate('/employee-profile');
+  };
+
   const handleNavigateCompanyApps = () => {
     handleDrawerClose();
     navigate('/company-apps');
@@ -272,6 +278,15 @@ export function TopNav() {
                 {/* Settings Link (signed-in only) */}
                 <ListItem disablePadding>
                   <ListItemButton
+                    onClick={handleNavigateEmployeeProfile}
+                    aria-label="View Employee Profile"
+                  >
+                    <AccountCircleIcon sx={{ mr: 1 }} />
+                    <ListItemText primary="Employee Profile" />
+                  </ListItemButton>
+                </ListItem>
+                <ListItem disablePadding>
+                  <ListItemButton
                     onClick={handleNavigateSettings}
                     aria-label="Open Settings"
                   >
@@ -343,6 +358,10 @@ export function TopNav() {
           </Typography>
         </MenuItem>
         <Divider />
+        <MenuItem onClick={handleNavigateEmployeeProfile} aria-label="View Employee Profile">
+          <AccountCircleIcon sx={{ mr: 1 }} />
+          Employee Profile
+        </MenuItem>
         <MenuItem onClick={handleNavigateSettings} aria-label="Open Settings">
           <SettingsIcon sx={{ mr: 1 }} />
           Settings
