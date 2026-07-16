@@ -1,21 +1,61 @@
-import React, { useState } from 'react';
-import { Box, Paper, Typography, TextField, Button, Stack, Alert } from '@mui/material';
-import { useForm, Controller } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../../context/AuthContext';
-import { useThemeMode } from '../../context/ThemeContext';
-import { validateCredentials } from '../../services/mockAuthService';
+import React, { useMemo, useState } from "react";
+import {
+  Box,
+  Paper,
+  Typography,
+  TextField,
+  Button,
+  Stack,
+  Alert,
+} from "@mui/material";
+import { useForm, Controller } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
+import { useThemeMode } from "../../context/ThemeContext";
+import { validateCredentials } from "../../services/mockAuthService";
+import { EMAIL_REGEX, EProjectStatusTypes } from "../../types";
 
 interface LoginFormValues {
   email: string;
   password: string;
 }
 
-const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+const getStyles = (isDark: boolean) => {
+  return {
+    pageContainer: {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      minHeight: "100vh",
+      bgcolor: "background.default",
+      backgroundImage: isDark
+        ? "radial-gradient(ellipse 70% 50% at 50% 0%, rgba(34, 211, 238, 0.12), transparent)"
+        : "radial-gradient(ellipse 70% 50% at 50% 0%, rgba(8, 145, 178, 0.06), transparent)",
+      px: 2,
+    },
+    contentContainer: {
+      p: 4,
+      width: "100%",
+      maxWidth: 400,
+      borderRadius: 4,
+    },
+    signInText: {
+      textAlign: "center",
+      background: isDark
+        ? "linear-gradient(135deg, #22D3EE 0%, #A78BFA 100%)"
+        : "linear-gradient(135deg, #0891B2 0%, #7C3AED 100%)",
+      WebkitBackgroundClip: "text",
+      WebkitTextFillColor: "transparent",
+    },
+    alertText: { mb: 2 },
+  };
+};
 
 export default function LoginPage() {
   const { login } = useAuth();
   const { isDark } = useThemeMode();
+  const styles = useMemo(() => getStyles(isDark), [isDark]);
+
   const navigate = useNavigate();
   const [loginError, setLoginError] = useState<string | null>(null);
   const {
@@ -23,7 +63,7 @@ export default function LoginPage() {
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm<LoginFormValues>({
-    defaultValues: { email: '', password: '' },
+    defaultValues: { email: "", password: "" },
   });
 
   const onSubmit = async (data: LoginFormValues) => {
@@ -32,55 +72,28 @@ export default function LoginPage() {
       const result = await validateCredentials(data.email, data.password);
       if (result.success && result.user) {
         login(result.user);
-        navigate('/home', { replace: true });
+        navigate("/home", { replace: true });
       } else {
-        setLoginError(result.error || 'Login failed');
+        setLoginError(result.error || "Login failed");
       }
     } catch (error) {
-      setLoginError('An error occurred during login');
+      setLoginError("An error occurred during login");
     }
   };
 
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        minHeight: '100vh',
-        bgcolor: 'background.default',
-        backgroundImage: isDark
-          ? 'radial-gradient(ellipse 70% 50% at 50% 0%, rgba(34, 211, 238, 0.12), transparent)'
-          : 'radial-gradient(ellipse 70% 50% at 50% 0%, rgba(8, 145, 178, 0.06), transparent)',
-        px: 2,
-      }}
-    >
-      <Paper
-        elevation={isDark ? 0 : 3}
-        sx={{
-          p: 4,
-          width: '100%',
-          maxWidth: 400,
-          borderRadius: 4,
-        }}
-      >
+    <Box sx={styles.pageContainer}>
+      <Paper elevation={isDark ? 0 : 3} sx={styles.contentContainer}>
         <Typography
           variant="h5"
           component="h1"
           gutterBottom
-          sx={{
-            textAlign: 'center',
-            background: isDark
-              ? 'linear-gradient(135deg, #22D3EE 0%, #A78BFA 100%)'
-              : 'linear-gradient(135deg, #0891B2 0%, #7C3AED 100%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-          }}
+          sx={styles.signInText}
         >
           Sign In
         </Typography>
         {loginError && (
-          <Alert severity="error" sx={{ mb: 2 }}>
+          <Alert severity={EProjectStatusTypes.Error} sx={styles.alertText}>
             {loginError}
           </Alert>
         )}
@@ -90,10 +103,10 @@ export default function LoginPage() {
               name="email"
               control={control}
               rules={{
-                required: 'Email is required',
+                required: "Email is required",
                 pattern: {
                   value: EMAIL_REGEX,
-                  message: 'Enter a valid email address',
+                  message: "Enter a valid email address",
                 },
               }}
               render={({ field }) => (
@@ -112,10 +125,10 @@ export default function LoginPage() {
               name="password"
               control={control}
               rules={{
-                required: 'Password is required',
+                required: "Password is required",
                 minLength: {
                   value: 8,
-                  message: 'Password must be at least 8 characters',
+                  message: "Password must be at least 8 characters",
                 },
               }}
               render={({ field }) => (
